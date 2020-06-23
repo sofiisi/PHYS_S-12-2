@@ -1,35 +1,50 @@
 body {
-  background-color: mistyrose;
+  background-color: white;
   margin: 0;
 }
 
-h1 {
+h1,h2 {
   color: indigo;
   text-align: center;
+  font-size: 45px;
   font-family: georgia;
 }
 
-p {
+h3 {
 	color: lightslategray;
 	text-align: center;
   font-family: serif;
   font-style: italic;
   font-size: 15px;
 }
+p {
+color: black;
+ 	margin: 25px 50px 75px;
+  font-family: serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;	
 
+}
+*{
+	list-style: none;
+}
 .topnav {
 	width: 100%;
 	margin: 0 auto;
-  background-color: darkgrey;
+  background-color: indigo;
   overflow: hidden;
+  text-decoration: none;
+  list-style: none;
 }
 .topnav a {
   float: left;
-  color: indigo;
+  color: white;
   text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
   font-family: serif;
   text-decoration: none;
+  list-style: none;
   font-size: 17px;
+
 }
