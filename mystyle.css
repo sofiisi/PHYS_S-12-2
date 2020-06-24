@@ -15,12 +15,13 @@ h1,h2 {
 }
 
 h3 {
-	color: lightslategray;
+	color: white;
 	text-align: center;
   font-family: serif;
   font-style: italic;
+  position: center;
   font-size: 15px;
-  background-color: white;
+  background-color: transparent;
   margin-right: 190px;
   margin-left: 190px;
 }
@@ -49,6 +50,7 @@ color: indigo;
 .topnav a {
   float: left;
   color: white;
+  font-weight: bold;
   text-align: center;
   padding: 14px 16px;
   font-family: serif;
