@@ -31,10 +31,6 @@ color: indigo;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;	
-  background-color: white;
-  margin-right: 190px;
-  margin-left: 190px;
-
 }
 *{
 	list-style: none;
@@ -58,4 +54,14 @@ color: indigo;
   list-style: none;
   font-size: 17px;
 
+}
+ .topnav a:hover {
+  background-color: indigo;
+
+}
+.paragraph {
+	background-color: white;
+	padding: 20px;
+	margin: auto;
+	width: 50%;
 }
