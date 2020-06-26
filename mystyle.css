@@ -113,4 +113,14 @@ color: indigo;
 	padding-right: 45px;
 	margin: auto;
 	position: relative;
+	height: 20px;
+}
+.i-a{
+	width: 18%;
+	padding-top: 3px;
+	padding-bottom: 40px;
+	padding-left: 130px;
+	padding-right: 45px;
+	margin: auto;
+	position: relative;
 }
