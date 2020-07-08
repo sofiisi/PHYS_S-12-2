@@ -2,6 +2,10 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="../mystyle.css">
+	 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
 <nav>
@@ -51,9 +55,20 @@
 		<img src="c7.png" alt="c7" style="width:45%"><br><br>
 	<strong>Multimeter:</strong> Finally, I used the multimeter to measure the voltage in the circuit. In connection with the board, I got 5.5V. Then in the potentiometer, I got 5.38V in the first leg, 3.01V in the middle one, and 0V in the last one. Sadly my multimeter decided not to work anymore, but I connect a wire to use the analog read. To get the measure in voltage, I divided by the power that the board provides, I learned it in the <a href="https://www.arduino.cc/en/Tutorial/ReadAnalogVoltage"><strong>Arduino website.</strong></a> It was confusing for me that the multimeter gave me values bigger than the power supply, so I believe it is a mistake. <br>
 
-	<strong>The code:</strong> <br>
-		<img src="anvcode.png" alt="code" style="width: 45%"><br>
-	<strong>Potenciometer:</strong> 5V, 3.36V, 0V
+	<strong>The code:</strong> <br> </p>
+		<pre><code class="language-arduino">
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int sensorValue = analogRead(A0);
+  float voltage = sensorValue * (5.0 / 1023.0);
+  Serial.println(voltage);
+  delay(10);       
+}
+		</code></pre>
+	<p><strong>Potenciometer:</strong> 5V, 3.36V, 0V
 	<strong>Motor:</strong> 4.49V
 	<strong>Resistor:</strong> 3.37V (nearest to the potenciometer), 2,71V (the other side)
 	<strong>Led:</strong> 2.70V, 0.4(cathode)
