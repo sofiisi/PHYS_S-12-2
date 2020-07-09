@@ -2,6 +2,12 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="../mystyle.css">
+<link  rel="icon"   href="../icon.png" type="image/png" />
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
 <nav>
@@ -32,5 +38,68 @@
 	</div>	
 </nav>
 <h1>Programming Arduino</h1>
+<div class="paragraph">
+<p>First, I wanted to work with the circuit and Arduino because on Tuesday workshop; I had a  lot of problems connecting the button. I was so complicated with the two-leg button that I end up switching for a four one that I already knew how to connect and work with it. Doing that, I realized that wasn't a code problem that was a connection problem. <a href="https://electronics.stackexchange.com/questions/116971/what-is-the-difference-between-4-leg-and-2-leg-momentary-tactile-switch"><strong>I read this post</strong></a>, and I understand what I was doing wrong. I change my circuit, connect it write, and I realized that this kind of button is easier to use.</p> 
+<img src="ci1.png" alt="first circuit" style="width: 45%">
+<p>
+So for the assignment, I wanted to challenge myself. My plan was to connect two LEDs, each one connected to a button. I connected everything, and I started playing with the code. I tried three ways, at the beginning I code two separate if one for led 1/button 1 and the other one led 2/button 2. Since that didn't work, I change for one if, in other words, the if was if button 1 was high and the else if bottom two was high. That didn't work either. Consequently, I change the code again for this one:</p>
+<pre><code class="language-arduino">
+  const int buttonPin = 2;   //button 1
+const int buttonPin2 = 3;  //button 2 
+const int led1 =  10;   //Led control by button 1
+const int led2 =  11;   //Led control by button 2 
+int ledbr = 255;
+
+int buttonState = 0;   
+int buttonState2 = 0; 
+
+void setup() {
+   pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(buttonPin, INPUT);
+   pinMode(buttonPin2, INPUT);
+}
+
+void loop() {
+  // read the state of the pushbutton value:
+  buttonState = digitalRead(buttonPin);
+  buttonState2 = digitalRead(buttonPin2);
+  // check if the pushbutton is pressed.
+  // if it is, the buttonState is HIGH:
+if (buttonState == HIGH){
+   for (int i = 0; i <= 255; i=i+1) {
+    analogWrite(led1, i);
+    delay(10);
+  }
+  delay(100);
+  digitalWrite(led1, LOW);
+  delay(10);
+   }   
+else if (buttonState == LOW);{
+  buttonState2 = digitalRead(buttonPin2);
+  if (buttonState2 == HIGH){
+   for (int i = 0; i <= 255; i=i+1) {
+    analogWrite(led2, i);
+    delay(10);
+   }   
+  }
+  else if (buttonState2 == LOW);{
+    digitalWrite(led2, LOW);
+    }
+  }
+// Added the delay
+  delay(100);
+}
+</code></pre>
+<p>Again, this code didn't code. I was running out of ideas, and I decided to use tinkercad with that I would realize something. My code actually worked perfectly in the simulation. I found that the LED 2 was burned. I rerun the program, and it partially works. 
+
+The only thing was that the LEDs didn't turn off after I stopped pressing the button. And I try several things, but I couldn't make it. My theory is that I'm not actually breaking the for, so the program never gets to the low point. I would actually code this in a <code>while</code> and with other methods but that wasn´t part of the assignment.
+</p>
+<p>
+  <strong>Desing with Fusion 360</strong><br>
+  For the 3D design, I created a rack and a pinion with the idea that I would end up using them in my final project. When I was building it and thinking about the whole design, I realized that I was doing what I know how to do it. In every competition that I have participated, I worked in the robot design and construction, so I feel comfortable doing it. For that reason, I decided to change my final project to something that I haven't work in off yet. Anyways this is the tutorial that I used is from Autodesk, and even though they use an older version of fusion is easy to follow. And this is the design I come up with:
+</p>
+<img src="rack-pinion.png" alt="rack-pinion" style="width: 45%">
+</div>
 </body>
 </html>
