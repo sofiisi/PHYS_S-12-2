@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../mystyle.css">
+<link  rel="icon"   href="../icon.png" type="image/png" />
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+<nav>
+  <div class="topnav">
+      <a class="active" href="../index.html">Home</a>
+      <a class="active" href="../About-me/about-me.html">About me</a>
+      <a class="active" href="../Final-project/Final_projects.html">Final Project</a>
+      <div class="dropdown">
+    <button class="dropbtn" href="../assignments.html">Assignments
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+     <a href="../class1/class1.html">Class 1</a>
+      <a href="../class2/class2.html">Class 2</a>
+      <a href="../class3/class3.html">Class 3</a>
+      <a href="../class4/class4.html">Class 4</a>
+      <a href="../class5/class5.html">Class 5</a>
+      <a href="../class6/class6.html">Class 6</a>
+      <a href="../class7/class7.html">Class 7</a>
+      <a href="../class8/class8.html">Class 8</a>
+      <a href="../class9/class9.html">Class 9</a>
+      <a href="../class10/class10.html">Class 10</a>
+      <a href="../class11/class11.html">Class 11</a>
+      <a href="../class12/class12.html">Class 12</a>
+    </div>
+  </div>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>  
+</nav>
+<h1>Sensors</h1>
+<div class="paragraph">
+  <p>
+    For this assignment, I decided to work with the infrared LED and sensor, and the capacitor. I was thinking about how useful they could be in my final project to detect when you take or put a pencil en the pencil holder. That's why I build a rapid prototype that you can see here:<br><br>
+<img src="p1.png" alt="1 pic" style="width: 45%"> <img src="p2.png" alt="2 pic" style="width: 45%"><br><br>
+    I choose this design because it was easier to cut than a cylinder (which us my actual model). I build it to fit in the breadboard with some high. In that way, I could first put a piece of paper to separate the capacitor form the pencils making it more precise. Second, I made holes at the end of the cardboard in parallel sides so I could insert the LED on one face and the sensor in the other one.
+
+    With the infrared sensor, I use a lot of resources to better understand the way it works and how to build the circuit. I use this <a href="https://www.youtube.com/watch?v=v7qFH7ahLFI"><strong>video</strong></a>, this <a href="http://www.learningaboutelectronics.com/Articles/Infrared-detector-circuit.php"><strong>website</strong></a>, and this other <a href="https://www.instructables.com/id/Using-Infrared-Sensor-With-Arduino/"><strong>website</strong></a>. You can see the test circuit and code here:<br><br>
+<img src="c1.png" alt="1 circuit" style="width: 45%"> <br><br> 
+<video width="100%" controls>
+       <source src="pc.mov" type="video/mp4">
+    </video><br><br>
+<pre><code class="language-arduino">
+  int IRSensor = 2; // connect ir sensor to arduino pin 2
+  int LED = 13; // conect Led to arduino pin 13
+void setup() 
+{
+  pinMode (IRSensor, INPUT); // sensor pin INPUT
+  pinMode (LED, OUTPUT); // Led pin OUTPUT
+}
+
+void loop()
+{
+  int statusSensor = digitalRead (IRSensor);
+  
+  if (statusSensor == 0){
+    digitalWrite(LED, LOW); // LED LOW when they are "free"
+  }
+  
+  else{
+    digitalWrite(LED, HIGH); // LED High
+  } 
+}
+</code></pre>
+    After it works, I solder the pieces and this was the result:
+  </p>
+</div>
+</body>
+</html>
