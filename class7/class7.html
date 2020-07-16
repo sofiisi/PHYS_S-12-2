@@ -49,6 +49,7 @@
 <video width="100%" controls>
        <source src="pc.mov" type="video/mp4">
     </video><br><br>
+    </p>
 <pre><code class="language-arduino">
   int IRSensor = 2; // connect ir sensor to arduino pin 2
   int LED = 13; // conect Led to arduino pin 13
@@ -71,8 +72,60 @@ void loop()
   } 
 }
 </code></pre>
-    After it works, I solder the pieces and this was the result:
-  </p>
+   
+   <p>
+    After it works, I solder the pieces and this was the result:<br><br>
+    <img src="cs.png" alt="1 circuit" style="width: 45%"> <br><br> 
+    The measures in this sensor are 0 or 1. In my case, 0 is when they are seen each other and 1 when it is something in between. You can see in the next video the graph:<br><br>
+    <video width="100%" controls>
+       <source src="gir.mov" type="video/mp4">
+    </video><br><br>
+    For the capacitive sensor, I change multiple times the resistance and the samples to get more consistent numbers. I also used this <a href="https://automation-insights.blog/2017/06/07/what-is-a-capacitive-sensor/"><strong>website</strong></a> to help me understand. I end up choosing the measurements with a 47K and 1500 samples. With that, I defined my star stay in the range of 0 to 11. So every measure over 11 means there is an object in the box. And the highest value I could get was 32; I believe it could be much higher, but I need to keep the weight and volume of the objects in reason with the box. The other thing I realize was if I make pressure on the paper with objects, the values increased. Finally, this sensor wasn't exactly all the time, so I believe I'm not going to use it in my final project. Here is the circuit, code, and graphic of the sensor: <br><br>
+    <img src="c2.jpg" alt="1 circuit" style="width: 45%"> <img src="c1.png" alt="1 circuit" style="width: 45%"> <br><br> 
+    <img src="g1.png" alt="1 circuit" style="width: 45%"> <br><br> 
+    </p>
+<pre><code class="language-arduino">
+  #include CapacitiveSensor.h
+  CapacitiveSensor Sensor = CapacitiveSensor(7,5); //7 is charge pin.  5 is sense pin.
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  long sensorValue = Sensor.capacitiveSensor(1500); //Change the number of samples to get the required timing and sensitivity.
+  delay(200);
+  Serial.println(sensorValue);
+}
+</code></pre>
+<p>
+  Finally, I started mixing the codes with conditional to build a possible base for my final project.  It is not working, but again I believe the capacitive sensor is inexact. Anyway here is the code because I think it could be useful at some point.
+</p>
+<pre><code class="language-arduino">
+  #include <CapacitiveSensor.h>
+CapacitiveSensor Sensor = CapacitiveSensor(7,5);
+int IRSensor = 2; 
+int LED = 13;
+
+void setup() {
+   pinMode (IRSensor, INPUT); 
+  pinMode (LED, OUTPUT);
+
+}
+
+void loop() {
+  long sensorValue = Sensor.capacitiveSensor(1500);
+  int statusSensor = digitalRead (IRSensor);
+  if ((statusSensor == 1)&&(sensorValue > 15)){
+    digitalWrite(LED, HIGH);
+  }
+  
+  else{
+    digitalWrite(LED, LOW); 
+  } 
+
+}
+  </code></pre>
 </div>
 </body>
 </html>
