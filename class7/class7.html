@@ -80,9 +80,13 @@ void loop()
     <video width="100%" controls>
        <source src="gir.mov" type="video/mp4">
     </video><br><br>
+    In the graph and table below, A is a pencil (8 mm of diameter), and B is a highlighter (approximately 3 cm of width). It's important to mention that I calculated by seconds because it was easier to see the data. <br><br>
+ <img src="irpic.png" alt="table" style="width: 45%"> <img src="irchart.png" alt="chart" style="width: 45%"> <br><br> 
     For the capacitive sensor, I change multiple times the resistance and the samples to get more consistent numbers. I also used this <a href="https://automation-insights.blog/2017/06/07/what-is-a-capacitive-sensor/"><strong>website</strong></a> to help me understand. I end up choosing the measurements with a 47K and 1500 samples. With that, I defined my start point stay in the range of 0 to 11. So every measure over 11 means there is an object in the box. And the highest value I could get was 32; I believe it could be much higher, but I need to keep the weight and volume of the objects in reason with the box. The other thing I realize was if I make pressure on the paper with objects, the values increased. Finally, this sensor wasn't exactly all the time, so I believe I'm not going to use it in my final project. Here is the circuit, code, and graphic of the sensor: <br><br>
-    <img src="c2.jpg" alt="1 circuit" style="width: 45%"> <img src="c1.png" alt="1 circuit" style="width: 45%"> <br><br> 
-    <img src="g1.png" alt="1 circuit" style="width: 45%"> <br><br> 
+<img src="c2.jpg" alt="1 circuit" style="width: 45%"> <img src="c1.png" alt="1 circuit" style="width: 45%"> <br><br> 
+<img src="g1.png" alt="1 circuit" style="width: 45%"> <br><br> 
+    In this case, object C is one pencil, object D are two pencils, and finally, object E is a nail polish bottle that is heavier than the other one's.  Also, the third measurement is putting pressure on the paper with the object.<br><br>
+<img src="cpic.png" alt="table" style="width: 45%"> <img src="cchart.png" alt="chart" style="width: 45%"> <br><br>
     </p>
 <pre><code class="language-arduino">
   #include CapacitiveSensor.h
@@ -93,7 +97,8 @@ void setup() {
 }
 
 void loop() {
-  long sensorValue = Sensor.capacitiveSensor(1500); //Change the number of samples to get the required timing and sensitivity.
+  long sensorValue = Sensor.capacitiveSensor(1500); //Change the number 
+  of samples to get the required timing and sensitivity.
   delay(200);
   Serial.println(sensorValue);
 }
