@@ -39,6 +39,90 @@
 </nav>
 <h1>Output devices</h1>
 <div class="paragraph">
+  <p>
+    For this week's assignment, I decided to work with the LED strip because I’m going to use them in my final project. First, I started with the button to control them. I used this method since last time I couldn't get I what I wanted.
+ </p>
+  <p>
+    Sadly, I had a lot of problems at the beginning because my LED would have green and red changed and had a strange blink. For those reasons, I decided to learn how the library actually works on this <a href="https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use"><strong>website</strong></a> and <a href="https://forum.arduino.cc/index.php?topic=512914.0"><strong>forum</strong></a>. I end up realizing it wasn't my code. It was the resistor in the wrong place. I put it in ground when it should be in the pin, and I committed that mistake following an unreliable source of information. When I got the wire right, I test my code, and it works. You can see de code and result bellow. <br><br>
+    <video width="100%" controls>
+       <source src="cb.mov" type="video/mp4">
+    </video><br><br>
+  </p>
+  <pre><code class="language-arduino">
+#include <Adafruit_NeoPixel.h>
+
+#define PIN        6 
+#define NUMPIXELS 10
+#define DELAYVAL 500
+
+const int buttonPin = 2;   //button 
+int buttonState = 0; 
+
+Adafruit_NeoPixel strip(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+uint32_t pink = strip.Color(255, 8, 167);
+
+void setup() {
+ pinMode(buttonPin, INPUT);
+ strip.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
+ strip.show(); // Turn OFF all pixels ASAP
+ strip.setBrightness(10);
+}
+
+void loop() {
+   strip.clear();
+   buttonState = digitalRead(buttonPin);
+   if (buttonState == HIGH){
+    for(int i=0; i< NUMPIXELS; i++) {
+    strip.setPixelColor(i, pink);
+    strip.show(); 
+    delay(100);  
+    }
+   } 
+    else {
+      strip.show();
+      }
+  }
+  </code></pre>
+  <p>
+    Then I switched to the IR sensor, which is the one I'm planning to use in my final project. I had a problem because when I put an object in between, nothing happens, and I couldn't know if it was the LED or the sensor that had a wiring problem. I soldier the sensor again; I also connect another infrared led to the breadboard to see if that was. It was that! Now my code works perfectly fine just how I wanted. What do I learn? I need to solder better. Here you can see the code and a quick video of the circuit working.<br><br>
+    <video width="100%" controls>
+       <source src="cir.mov" type="video/mp4">
+    </video><br><br>
+  </p>
+  <pre><code class="language-arduino">
+ #include <Adafruit_NeoPixel.h>
+
+#define PIN        6 
+#define NUMPIXELS 10 
+#define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
+
+Adafruit_NeoPixel strip(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+uint32_t pink = strip.Color(255, 8, 167);
+
+int IRSensor = 2; // connect IR sensor to arduino pin 2
+
+void setup() {
+  strip.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
+  strip.show();            // Turn OFF all pixels ASAP
+  strip.setBrightness(10); // Set BRIGHTNESS low to reduce draw (max = 255)
+  pinMode (IRSensor, INPUT); // sensor pin INPUT
+}
+void loop() {
+   strip.clear();
+   int statusSensor = digitalRead (IRSensor);
+   if (statusSensor == 1){
+  strip.fill(pink, 0, 10);
+    strip.show(); 
+    delay(100);  
+   } 
+
+    else {
+      strip.show();
+      }
+  }
+  </code></pre>
   </div>
 
 </body>
