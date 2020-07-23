@@ -40,7 +40,87 @@
 
 <h1>Networking</h1>
 <div class="paragraph">
-  <a href="led.html">led</a>
+  <p>
+    In this assignment, I wanted to use an LCD displayer to print a random Pokemon name, experience, and if it is hidden from an API. I had an LCD in my house, but I have never used it before. Well, I did, but in my school, we're it was already connected to it. So that was the first thing I had to figure out. I soldier these pins and then inserted them into the breadboard. After that, I made the bridge to the huzzah board with jumper wires. I also used a potentiometer to control the contrast.
+  </p>
+  <p>
+   Yesterday the Fablab that is printing my pieces contacted me because one of the models had a problem. For that reason, I need to design 3 of the four parts. So I couldn't finish my assignment. What I did was the same, but instead of printing in the LCD I printed in the serial monitor. 
+  </p>
+  <pre><code class="language-arduino">
+ #include <ArduinoJson.h>
+
+#include <WiFi.h>
+#include <HTTPClient.h>
+ 
+const char* ssid = "HUAWEI-A40A";
+const char* password =  "95964506";
+ 
+const String url = "https://pokeapi.co/api/v2/pokemon/ditto";
+
+   
+void setup() {
+ 
+  Serial.begin(9600);
+ 
+  WiFi.begin(ssid, password);
+ 
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi..");
+  }
+ 
+  Serial.println("Connected to the WiFi network");
+ 
+}
+
+void loop() {
+ 
+  if ((WiFi.status() == WL_CONNECTED)) { //Check the current connection status
+ 
+    HTTPClient http;
+ 
+    http.begin(url); //Specify the URL
+    int httpCode = http.GET();  //Make the request
+ 
+    if (httpCode > 0) { //Check for the returning code
+ 
+        String payload = http.getString();
+        Serial.println(httpCode);
+        //Serial.println(payload);
+      
+      DynamicJsonDocument doc(100000); 
+
+      DeserializationError error = deserializeJson(doc, payload);
+
+      if (error) {
+        Serial.print(F("deserializeJson() failed: "));
+        Serial.println(error.c_str());
+        return;
+      }
+
+      const char* pname = doc["abilities"][0]["ability"][0]["name"];
+      const char* hidden = doc["abilities"][0]["ability"][0]["is_hidden"];
+      const char* exper = doc["abilities"][0]["ability"][0]["base_experience"];
+      
+      Serial.print("Pokemon:");
+      Serial.print(pname);
+      Serial.print(hidden);
+      Serial.println(exper);
+      
+      http.end();   // Close the connection
+    }
+
+    delay(30000); // Wait 30 seconds between requests 
+
+      }
+}
+  </code></pre>
+<p>
+  I used a lot of websites this week, you can see all of them here:
+  <a href="https://randomnerdtutorials.com/decoding-and-encoding-json-with-arduino-or-esp8266/"><strong>website</strong></a><br>
+   <a href="https://arduinojson.org/v6/api/misc/deserializationerror/"><strong>website</strong></a><br>
+    <a href="https://pokeapi.co/"><strong>API</strong></a>
+</p>
 </div>
 </body>
 </html>
