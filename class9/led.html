@@ -19,7 +19,16 @@
 
 	<script>
 	// Your web app's Firebase configuration
-	var firebaseConfig = {
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
     apiKey: "AIzaSyDlH37BxsEBTzDKDWUxyo42D-s67Mv00nY",
     authDomain: "tryesp32.firebaseapp.com",
     databaseURL: "https://tryesp32.firebaseio.com",
@@ -29,9 +38,9 @@
     appId: "1:112096286153:web:d2271d83c8a45e39fc4418",
     measurementId: "G-DFG227LQ4Q"
   };
-	
-	// Initialize Firebase
-	firebase.initializeApp(firebaseConfig);
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
 
 	// Get a database reference to our blog
 	var ref = firebase.database().ref("/");
