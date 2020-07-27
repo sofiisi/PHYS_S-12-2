@@ -7,19 +7,19 @@
 </head>
 
 <body>
-	<!-- button names-->
-	<button id="candy-r" name="candyr">Right candy </button> 
-	<button id="candy-l" name="candyl">Left candy </button>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+	<button id="turn-on" name="turnon">Turn On </button>
+	<button id="turn-off" name="turnoff">Turn Off </button>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js"></script>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
 
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+	     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+
+	<script>
+	// Your web app's Firebase configuration
+	var firebaseConfig = {
     apiKey: "AIzaSyARgQF0ZiA1bt3ccyWPcXaWAElrIykV6mI",
     authDomain: "stepper-638f3.firebaseapp.com",
     databaseURL: "https://stepper-638f3.firebaseio.com",
@@ -28,15 +28,18 @@
     messagingSenderId: "498457055474",
     appId: "1:498457055474:web:562c2a7faa55b5cb44006b",
   };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+	
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
 
-var ref = firebase.database().ref('/');
+	// Get a database reference to our blog
+	var ref = firebase.database().ref("/");
 
-	document.getElementById('candy-r').addEventListener('click', candyR, false);
-	document.getElementById('candy-l').addEventListener('click', turnOff, false);
+	// make the buttons call the function below 
+	document.getElementById('turn-on').addEventListener('click', turnOn, false);
+	document.getElementById('turn-off').addEventListener('click', turnOff, false);
 
-	function candyR(){
+	function turnOn(){
 		console.log("turning on");
 		ref.update({
 			"Candyr": "ON"
@@ -46,7 +49,7 @@ var ref = firebase.database().ref('/');
 	function turnOff(){
 		console.log("turning off");
 		ref.update({
-			"Candyr": "OFF"
+			"LED_STATUS": "OFF"
 		});
 	}	
     </script>
