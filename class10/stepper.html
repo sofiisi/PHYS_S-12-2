@@ -8,8 +8,8 @@
 
 <body>
 	<!-- button names-->
-	<button id="candyr" name="candyr">Right candy </button> 
-	<button id="candyl" name="candyl">Left candy </button>
+	<button id="candy-r" name="candyr">Right candy </button> 
+	<button id="candy-l" name="candyl">Left candy </button>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
@@ -34,7 +34,7 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
-	document.getElementById('candyr').addEventListener('click', candyR, false);
+	document.getElementById('candy-r').addEventListener('click', candyR, false);
 	document.getElementById('turn-off').addEventListener('click', turnOff, false);
 
 	function candyR(){
