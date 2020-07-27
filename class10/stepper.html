@@ -8,7 +8,7 @@
 
 <body>
 	<button id="r-candy" name="candyr">Right candy </button>
-	<button id="turn-off" name="turnoff">Left candy </button>
+	<button id="l-candy" name="candyl">Left candy </button>
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
@@ -37,7 +37,7 @@
 
 	// make the buttons call the function below 
 	document.getElementById('r-candy').addEventListener('click', candyR, false);
-	document.getElementById('turn-off').addEventListener('click', turnOff, false);
+	document.getElementById('l-candy').addEventListener('click', candyL, false);
 
 	function candyR(){
 		console.log("turning on");
@@ -51,12 +51,17 @@
 
 	}
 
-	function turnOff(){
-		console.log("turning off");
+function candyL(){
+		console.log("turning on");
 		ref.update({
-			"LED_STATUS": "OFF"
+			"Candyl": "ON"
 		});
-	}	
+		setTimeout(function(){console.log("turning off");
+		 ref.update({
+		 	"Candyl": "OFF"
+		 });},1000);
+
+	}
     </script>
 
 </body>
