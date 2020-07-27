@@ -34,6 +34,8 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
+var ref = firebase.database().ref("/");
+
 	document.getElementById('candy-r').addEventListener('click', candyR, false);
 	document.getElementById('turn-off').addEventListener('click', turnOff, false);
 
