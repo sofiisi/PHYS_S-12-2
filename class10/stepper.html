@@ -7,7 +7,7 @@
 </head>
 
 <body>
-	<button id="turn-on" name="turnon">Right candy </button>
+	<button id="r-candy" name="turnon">Right candy </button>
 	<button id="turn-off" name="turnoff">Turn Off </button>
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -36,7 +36,7 @@
 	var ref = firebase.database().ref("/");
 
 	// make the buttons call the function below 
-	document.getElementById('turn-on').addEventListener('click', candyR, false);
+	document.getElementById('r-candy').addEventListener('click', candyR, false);
 	document.getElementById('turn-off').addEventListener('click', turnOff, false);
 
 	function candyR(){
