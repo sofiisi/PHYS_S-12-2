@@ -34,8 +34,10 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
+	document.getElementById('candyr').addEventListener('click', candyR, false);
+	document.getElementById('turn-off').addEventListener('click', turnOff, false);
 
-	function candyr(){
+	function candyR(){
 		console.log("turning on");
 		ref.update({
 			"Candyr": "ON"
