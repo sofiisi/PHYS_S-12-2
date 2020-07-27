@@ -44,11 +44,11 @@
 		ref.update({
 			"Candyr": "ON"
 		});
-		sleep(1000);
-		console.log("turning off");
+		setTimeout(function(){console.log("turning off");
 		 ref.update({
 		 	"Candyr": "OFF"
-		 });
+		 });},1000);
+
 	}
 
 	function turnOff(){
