@@ -44,9 +44,7 @@
 		ref.update({
 			"Candyr": "ON"
 		});
-		ref.update({
-			"Candyr": "OFF"
-		});
+		sleep(100).then(() => {ref.update({"Candyr": "OFF"});} );
 	}
 
 	function turnOff(){
