@@ -33,7 +33,7 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
-var usersRef = firebase.database().ref('Candyr');
+var ref = firebase.database().ref('/');
 
 	document.getElementById('candy-r').addEventListener('click', candyR, false);
 	document.getElementById('candy-l').addEventListener('click', turnOff, false);
