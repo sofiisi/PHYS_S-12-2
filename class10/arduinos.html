@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+</style>
+</head>   
+
+<body>
+<h3>Arduino code:</h3>
+<pre><code class="language-arduino">
+#include <FirebaseESP32.h>
+#include <FirebaseESP32HTTPClient.h>
+#include <FirebaseJson.h>
+
+
+#include <WiFi.h>
+
+#define FIREBASE_HOST "stepper-638f3.firebaseio.com/"  // the project name address from firebase id
+#define FIREBASE_AUTH "QonYwNYYS2CEvlLR1zUruaSzQxMyTSTl3gy8ufrU" // the secret key generated from firebase
+#define WIFI_SSID "HUAWEI-A40A"                                // input your home or public wifi name
+#define WIFI_PASSWORD "95964506"  
+
+String fireString = "";    // rigth motor status received from firebase
+String fireStringl = "";   // left motor status received from firebase
+
+#include <Stepper.h>
+
+const int stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
+
+// initialize the stepper library
+Stepper rmotor(stepsPerRevolution, 13, 12, 27, 33);
+Stepper lmotor(stepsPerRevolution, 15, 32, 14, 21);
+
+//Define FirebaseESP32 data object
+FirebaseData firebaseData;
+WiFiServer server(80);
+
+void setup() {
+  Serial.begin(9600);
+  delay(1000);
+  rmotor.setSpeed(50);
+  lmotor.setSpeed(50);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);        // try to connect with wifi
+
+  Serial.print("Connecting to ");
+  Serial.print(WIFI_SSID);
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+
+  Serial.println();
+  Serial.print("Connected to ");
+  Serial.println(WIFI_SSID);
+  Serial.print("IP Address is : ");
+  Serial.println(WiFi.localIP());                 // print local IP address
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);    // connect to firebase
+  Firebase.reconnectWiFi(true);
+  Firebase.set(firebaseData, "/Candyr", "OFF");   // set initial string of "OFF"
+  Firebase.set(firebaseData, "/Candyl", "OFF");
+}
+
+void loop() {
+
+  Firebase.get(firebaseData, "/Candyr");                     // get rigth motor status input from firebase
+  fireString = firebaseData.stringData();                        
+  
+  Firebase.get(firebaseData, "/Candyl");                     // get left motor status input from firebase
+  fireStringl = firebaseData.stringData(); 
+  
+  Serial.println(fireString);
+  
+  while (fireString == "ON") {                    // compare the input of right motor status received from firebase
+    Serial.println("motor Turned ON");
+    rmotor.step(-stepsPerRevolution);
+    delay(1000);    
+   break;
+  }
+
+  while (fireString == "OFF") {              // compare the input of rigth motor status received from firebase
+    Serial.println("motor Turned OFF");
+    digitalWrite(13,LOW);
+    digitalWrite(12,LOW);
+    digitalWrite(27,LOW);
+    digitalWrite(33,LOW);
+    break;
+  }
+
+  while (fireStringl == "ON") {                    // compare the input of left motor status received from firebase
+    Serial.println("Left motor Turned ON");
+    lmotor.step(-stepsPerRevolution);     
+    delay(1000); 
+    break;
+  }
+
+  while (fireStringl == "OFF") {              // compare the input of left motor status received from firebase
+    Serial.println("Left motor Turned OFF");
+    digitalWrite(15,LOW);
+    digitalWrite(32,LOW);
+    digitalWrite(14,LOW);
+    digitalWrite(21,LOW);
+    break;
+  }
+  
+  delay(1000);                                 
+}
+</code></pre>
+</body>
+</html>

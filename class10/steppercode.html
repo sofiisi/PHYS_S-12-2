@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+</style>
+</head>   
+
+<body>
+<h3>HTML code:</h3>
+<pre><code class="language-arduino">
+	&ltbutton id="r-candy" name="candyr"&gtRight candy &lt/button&gt
+	&ltbutton id="l-candy" name="candyl"&gtLeft candy &lt/button&gt
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	&ltscript src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"&gt&lt/script&gt
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+	     https://firebase.google.com/docs/web/setup#available-libraries -->
+	&ltscript src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"&gt&lt/script&gt
+
+	&ltscript&gt
+	// Your web app's Firebase configuration
+	var firebaseConfig = {
+    apiKey: "AIzaSyARgQF0ZiA1bt3ccyWPcXaWAElrIykV6mI",
+    authDomain: "stepper-638f3.firebaseapp.com",
+    databaseURL: "https://stepper-638f3.firebaseio.com",
+    projectId: "stepper-638f3",
+    storageBucket: "stepper-638f3.appspot.com",
+    messagingSenderId: "498457055474",
+    appId: "1:498457055474:web:562c2a7faa55b5cb44006b",
+  };
+	
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
+
+	// Get a database reference to our blog
+	var ref = firebase.database().ref("/");
+
+	// make the buttons call the function below 
+	document.getElementById('r-candy').addEventListener('click', candyR, false);
+	document.getElementById('l-candy').addEventListener('click', candyL, false);
+
+	function candyR(){
+		console.log("turning on");
+		ref.update({
+			"Candyr": "ON"
+		});
+		setTimeout(function(){console.log("turning off");
+		 ref.update({
+		 	"Candyr": "OFF"
+		 });},3000);
+
+	}
+
+function candyL(){
+		console.log("turning on");
+		ref.update({
+			"Candyl": "ON"
+		});
+		setTimeout(function(){console.log("turning off");
+		 ref.update({
+		 	"Candyl": "OFF"
+		 });},3000);
+
+	}
+    &lt/script&gt
+</code></pre>
+</body>
+</html>

@@ -37,9 +37,36 @@
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
   </div>  
 </nav>
-<h1>Machine</h1>
+<h1>Vending machine</h1>
 <div class="paragraph">
-  <a href="stepper.html">stepper</a> <p>1-2-3-4-5-6-7-8-9-10-13-14</p>
+  <p>
+   For my machine, I decided to make a vending machine that works with a website. The materials I used were: two stepper motors, two motor drivers, a breadboard, jumper wires, the huzzah board, a ton of cardboard, wire, hot glue, and tape. I used this <a href="https://www.youtube.com/watch?v=9goU6PYgoa4&feature=youtu.be"><strong>video</strong> as inspiration, but I change the measurements and the circuit.
+  <p>
+  First, I build the circuit and code it with a simple program to ensure that it works. Then I made the base structure and molded the wires. Here I committed a mistake because the end of the wire wasn't center, so when the motor turned, the movement was displaced. When I had everything glue at the inside, I added the other half of the box and the front face. I would love to put plastic in the upper window, but I didn't have any. <br><br>
+  <img src="part1.png" alt="4 pic" style="width: 45%"><img src="w1.png" alt="4 pic" style="width: 45%"><br><br>
+  <img src="part2.png" alt="4 pic" style="width: 45%"><img src="cir.png" alt="4 pic" style="width: 45%"><br><br>
+  </p>
+  <p>
+  On the other hand, I worked on the code. We can divide this into two parts the Arduino and the JavaScript inside the HTML. With the first one, I connected the board to the firebase and used the stepper library to make the motors turn when the database was ”on”. <br><br>
+ <iframe src="arduinos.html" width="100%" height="300" style="border:1px solid black;">
+</iframe><br><br>
+  In the second one, I used the example from class 9 and edited it to change the variable names. Then I realized that to make the motors stop when they did one cycle, I needed to edit the JavaScript, not the Arduino. To make this possible, I added a <code>setTimeout</code> between the two updates to the database. I also printed in the console when it turns on and off to have control and know if it was working how I wanted. <br><br>
+   <iframe src="steppercode.html" width="100%" height="300" style="border:1px solid black;">
+</iframe><br><br>
+  A video of the machine working: <br><br>
+  <video width="100%" controls>
+       <source src="vm.mov" type="video/mp4">
+    </video><br><br>
+  Try it live:<br><br>
+   <iframe src="stepper.html" width="100%" height="100" style="border:1px solid black;">
+</iframe><br><br>
+  Finally, all the resources that I used: <br><br>
+<a href="https://www.sitepoint.com/delay-sleep-pause-wait/"><strong>Website</strong><br><br>
+<a href="https://www.quora.com/How-do-I-Display-HTML-code-on-Web-Page"><strong>Forum</strong><br><br>
+<a href="https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript"><strong>Forum</strong><br><br>
+<a href="https://firebase.google.com/docs/reference/js/firebase.database.Reference"><strong>Website</strong><br><br> 
+<a href="http://electrica.uc3m.es/grobles/blog/?p=1384"><strong>Website</strong><br><br>
+  </p>
 </div>
 </body>
 </html>
