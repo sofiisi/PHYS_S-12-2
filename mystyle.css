@@ -16,7 +16,7 @@ h1 {
 h2 {
   color: white;
   text-align: center;
-  font-size: 45px;
+  font-size: 36px;
   font-family: georgia;
   background-color: transparent;
   margin-right: 190px;
@@ -28,7 +28,17 @@ h3 {
 	 color: white;
   font-family: serif;
   font-style: italic;
-  font-size: 15px;
+  font-size: 20px;
+  text-decoration: none;
+}
+h3 a {
+   text-align: center;
+   color: white;
+  font-family: serif;
+  font-style: italic;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: 900;
 }
 p {
 color: indigo;
@@ -274,4 +284,9 @@ pre code {
     border: 0px;
     padding: 2px;
     font:14px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block
 }
