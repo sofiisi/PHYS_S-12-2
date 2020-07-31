@@ -63,7 +63,7 @@ function gotResult(error, results) {
 
 function upload(){
   console.log("function works");
-  while (label == "Red"){
+  if (label == "Red"){
   ref.update({
     "Red" : "ON"
     });
