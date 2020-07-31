@@ -133,11 +133,5 @@ function upload(){
     "Pink" : "OFF"
     });
   }
-   if (label == "Clap"){
-  ref.update({
-    "Red" "Orange" "Yellow" "Green" "Blue" "Violet" "Pink" : "OFF"
-    });
-  }
   
-
 }
