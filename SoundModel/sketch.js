@@ -62,6 +62,7 @@ function gotResult(error, results) {
 }
 
 function upload(){
+  console.log("function works");
   if (label == "Red"){
   ref.update({
     "Red" : "ON"
