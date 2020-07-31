@@ -67,5 +67,10 @@ function upload(){
   ref.update({
     "Red" : "ON"
     });
-}
+  }
+  if (label == "Orange"){
+  ref.update({
+    "Orange" : "ON"
+    });
+  }
 }
