@@ -65,6 +65,6 @@ function gotResult(error, results) {
 function upload(){
   console.log("function works");
   ref.update({
-    label : "ON"
+    'label' : "ON"
     });
 }
