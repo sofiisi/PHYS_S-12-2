@@ -135,7 +135,7 @@ function upload(){
   }
    if (label == "Clap"){
   ref.update({
-    "Red"  "Orange"  "Yellow"  "Green"  "Blue"  "Violet"  "Pink" : "OFF"
+    "Red" "Orange" "Yellow" "Green" "Blue" "Violet" "Pink" : "OFF"
     });
   }
   
