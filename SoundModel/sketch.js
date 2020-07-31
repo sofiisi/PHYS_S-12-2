@@ -7,6 +7,20 @@ let classifier;
 // Teachable Machine model URL:
 let ModelURL = 'https://teachablemachine.withgoogle.com/models/1VFGSx7BS/';
 
+src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"
+
+ var firebaseConfig = {
+    apiKey: "AIzaSyAIRFvX5HPsCbqlmTZ8Q1n0R1YjljIZJBI",
+    authDomain: "final-project-ac183.firebaseapp.com",
+    databaseURL: "https://final-project-ac183.firebaseio.com",
+    projectId: "final-project-ac183",
+    storageBucket: "final-project-ac183.appspot.com",
+    messagingSenderId: "958472231173",
+    appId: "1:958472231173:web:57d42f9d729321bff8bf6c"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var ref = firebase.database().ref("/");
 
 function preload() {
   // Load the model
@@ -28,17 +42,13 @@ function draw() {
   textAlign(CENTER, CENTER);
   if (confidence > 0.8){
   text(label, width / 2, height / 2);
+  upload();
   }
   else if (confidence < 0.8){
   text("background", width / 2, height / 2);
   }
 }
-//var firebaseConfig = {
-  
-//};
 
-// Initialize Firebase
-//firebase.initializeApp(firebaseConfig);
 
 // The model recognizing a sound will trigger this event
 function gotResult(error, results) {
@@ -50,4 +60,11 @@ function gotResult(error, results) {
    console.log(results[0]);
   label = results[0].label;
   confidence = results[0].confidence;
+}
+
+function upload(){
+  console.log("function works");
+  ref.update({
+    label : "ON"
+    });
 }
