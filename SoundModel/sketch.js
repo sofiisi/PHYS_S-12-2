@@ -78,4 +78,60 @@ function upload(){
     "Orange" : "ON"
     });
   }
+  else if (label != "Orange"){
+  ref.update({
+    "Orange" : "OFF"
+    });
+  }
+   if (label == "Yellow"){
+  ref.update({
+    "Yellow" : "ON"
+    });
+  }
+  else if (label != "Yellow"){
+  ref.update({
+    "Yellow" : "OFF"
+    });
+  }
+ if (label == "Green"){
+  ref.update({
+    "Green" : "ON"
+    });
+  }
+  else if (label != "Green"){
+  ref.update({
+    "Green" : "OFF"
+    });
+  }
+   if (label == "Blue"){
+  ref.update({
+    "Blue" : "ON"
+    });
+  }
+  else if (label != "Blue"){
+  ref.update({
+    "Blue" : "OFF"
+    });
+  }
+   if (label == "Purple"){
+  ref.update({
+    "Violet" : "ON"
+    });
+  }
+  else if (label != "Purple"){
+  ref.update({
+    "Violet" : "OFF"
+    });
+  }
+   if (label == "Pink"){
+  ref.update({
+    "Pink" : "ON"
+    });
+  }
+  else if (label != "Pink"){
+  ref.update({
+    "Pink" : "OFF"
+    });
+  }
+
 }
