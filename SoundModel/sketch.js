@@ -42,16 +42,12 @@ function draw() {
   textAlign(CENTER, CENTER);
   if (confidence > 0.8){
   text(label, width / 2, height / 2);
-  ref.update({
-    label : "ON"
-    });
   upload();
   }
   else if (confidence < 0.8){
   text("background", width / 2, height / 2);
   }
 }
-
 
 // The model recognizing a sound will trigger this event
 function gotResult(error, results) {
@@ -67,7 +63,9 @@ function gotResult(error, results) {
 
 function upload(){
   console.log("function works");
+  while (label == "Red"){
   ref.update({
-    label : "ON"
+    "Red" : "ON"
     });
+}
 }
