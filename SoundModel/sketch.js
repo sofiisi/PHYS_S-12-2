@@ -1,27 +1,16 @@
-// Copyright (c) 2019 ml5
-//
-// This software is released under the MIT License.
-// https://opensource.org/licenses/MIT
-
-/* ===
-ml5 Example
-Webcam Image Classification using a pre-trained customized model and p5.js
-This example uses p5 preload function to create the classifier
-=== */
-
+// Label (start by showing listening)
+let label = "listening";
+let confidence;
 // Global variable to store the classifier
 let classifier;
 
-// Label (start by showing listening)
-let label = "listening";
-
 // Teachable Machine model URL:
-let soundModelURL = 'https://teachablemachine.withgoogle.com/models/h3p9R41J/model.json';
+let ModelURL = 'https://teachablemachine.withgoogle.com/models/1VFGSx7BS/';
 
 
 function preload() {
   // Load the model
-  classifier = ml5.soundClassifier(soundModelURL);
+  classifier = ml5.soundClassifier(ModelURL + 'model.json');
 }
 
 function setup() {
@@ -37,9 +26,19 @@ function draw() {
   fill(255);
   textSize(32);
   textAlign(CENTER, CENTER);
+  if (confidence > 0.8){
   text(label, width / 2, height / 2);
+  }
+  else if (confidence < 0.8){
+  text("background", width / 2, height / 2);
+  }
 }
+//var firebaseConfig = {
+  
+//};
 
+// Initialize Firebase
+//firebase.initializeApp(firebaseConfig);
 
 // The model recognizing a sound will trigger this event
 function gotResult(error, results) {
@@ -48,6 +47,7 @@ function gotResult(error, results) {
     return;
   }
   // The results are in an array ordered by confidence.
-  // console.log(results[0]);
+   console.log(results[0]);
   label = results[0].label;
+  confidence = results[0].confidence;
 }
