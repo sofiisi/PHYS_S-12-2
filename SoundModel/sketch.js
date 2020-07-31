@@ -7,7 +7,7 @@ let classifier;
 // Teachable Machine model URL:
 let ModelURL = 'https://teachablemachine.withgoogle.com/models/1VFGSx7BS/';
 
-src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"
+//src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"
 
  var firebaseConfig = {
     apiKey: "AIzaSyAIRFvX5HPsCbqlmTZ8Q1n0R1YjljIZJBI",
