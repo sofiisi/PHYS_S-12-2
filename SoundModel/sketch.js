@@ -42,7 +42,7 @@ function draw() {
   textAlign(CENTER, CENTER);
   if (confidence > 0.8){
   text(label, width / 2, height / 2);
-  upload(label);
+  upload();
   }
   else if (confidence < 0.8){
   text("background", width / 2, height / 2);
@@ -65,6 +65,6 @@ function gotResult(error, results) {
 function upload(){
   console.log("function works");
   ref.update({
-    label : "ON"
+    results[0].label : "ON"
     });
 }
