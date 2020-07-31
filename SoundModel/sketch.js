@@ -133,5 +133,17 @@ function upload(){
     "Pink" : "OFF"
     });
   }
+   if (label == "Clap"){
+  ref.update({
+    "Red" : "OFF"
+    "Orange" : "OFF"
+    "Yellow" : "OFF"
+    "Green" : "OFF"
+    "Blue" : "OFF"
+    "Violet" : "OFF"
+    "Pink" : "OFF"
+    });
+  }
+  
 
 }
