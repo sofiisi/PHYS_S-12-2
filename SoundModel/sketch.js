@@ -141,5 +141,15 @@ function upload(){
     "Clap" : "OFF"
     });
   }
+  if (label == "Random"){
+  ref.update({
+    "Random" : "ON"
+    });
+  }
+  else if (label != "Random"){
+  ref.update({
+    "Random" : "OFF"
+    });
+  }
   
 }
