@@ -38,18 +38,52 @@
 <h1>LED control with speech recognition</h1>
 <h3><a href="Process/process.html">Go to this <strong>website</strong> to see the process!</a></h3>
 <div class="paragraph">
-	<h4><strong>Hardware</strong></h4>
+	<iframe class="center" width="420" height="315"
+	src="https://youtu.be/LleFpzbRw7M">
+	</iframe>
 
+	<h4><strong>Hardware</strong></h4>
 	<p>
 		The hardware was simple two cylinders with a screw at the end a top to cover the inside circuit and a base to bring everything together.   All the pieces were print with PLA white and transparent to let the light come out. I had to cut the screw part and glue it to the first top that I create because the base part broke. However, you can see the 3D model of the original version. Talking about the circuit, it is really simple. Each huzzah board is connected to a led strip, ground, 3V and pin 14 in which I soldier a cable to a resistor. Also, both of them get their power from a power bank.
 	</p>
-	<iframe src="https://gmail988452.autodesk360.com/shares/public/SH919a0QTf3c32634dcf1a9be6154d80f2ad?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"  frameborder="0"></iframe>
+	<iframe src="https://gmail988452.autodesk360.com/shares/public/SH919a0QTf3c32634dcf1a9be6154d80f2ad?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"  frameborder="0"></iframe><br><br>
 
-	<img src="w1.png" alt="4 pic" style="width: 45%"><br><br>
+	<img clas="center" src="circuit.png" alt="4 pic" style="width: 45%"><br><br>
 
 	<h4><strong>Code</strong></h4>
+	<p>
+		So moving on to the code, I used teachable machine to create de voice recognition model then I connected with a p5.js, which is also connected to the firebase that shares the information with the Arduino.<br><br>
+
+		I create a model in teachable machine that has nine classes: background noise, seven colors of the rainbow, and a random that I would explain later. For this task, I record my voice the number of times it was necessary, depending on the class, and I also ask a friend to record it too. In that way, having two different voices in the model, it would be more accurate if a third one tries to use it. I would recommend this platform to beginners in machine learning like me because it is amicable and straightforward to use. However, for projects that are just a little bit more complex it is very limited. <br><br>
+
+		Moreover, I used P5.js to link teachable machine with my huzzah boards. But, to make it wireless I needed something in between, so I used a firebase. Let's focus on the JavaScript and HTML first. First I create a simple website in which I added all the libraries that I would need to create the connection between teachable machine and my website. Then I added the pop-up authorization for the microphone and the path to my JavaScript document call sketch. (For both codes I used the teachable machine example as a base)<br><br>
+
+		In my sketch, I first declare my 3 most important variables: label, which is equivalent to the class; confidence, which represent how sure the model is about it; and classifier, which is the main variable that store the model; I also create ModelURL to make things easier. Then I create my four main functions. Preload to load the model into my variable classifier. Setup to star the canvas and continuously listen to the microphone. Draw to show the results in the canvas if the confidence score is over 0.8. And gotResult, which will pull out the information from the model. To make all this possible we used a library called ml5 more specific the SoundClassification. What is does is to take the sound input and create a spectrogram (a visual representation of the spectrum of frequencies as it varies with time). This spectrogram of one-second duration is converted into an image that the model could analysis.<br><br>
+
+		With that ready, I need it to connect it to the boards via firebase. Again I added the libraries to my index.html and I create a new variable in my sketch called firebaseConfig were I added all the information about my database. Then I initialize the firebase and create a variable for the reference. To make changes in the database I create a function call upload in which I turn the respective label on and off if it was recognized. Here you can see the final HTML and JavaScript code:<br><br> 
+
+		<iframe src="audiowsfp.html" width="100%" height="300" style="border:1px solid black;">
+		</iframe><br><br>
+
+		<iframe src="sketchfp.html" width="100%" height="300" style="border:1px solid black;">
+		</iframe><br><br>
+
+		For the Arduino code, I started declaring all the libraries that I used and the data that each one needed. I create variables for each color to be more organized. I also create a string for each label that I had in my firebase. In the setup I initialized my wifi, the LED strip, and start the firebase setting every label off.  Then I create a function named readfb, which read each label status and relating them to their corresponding string. Finally, for each label, I build a function that if the firebase is on, they turn on the LED. In the case of random, I create three long variables R, G, B and inside their function I randomly select a number between 0 and 256 and declare random color. All that is run in the void loop.<br><br>
+
+		<iframe src="arduinofp.html" width="100%" height="300" style="border:1px solid black;">
+		</iframe><br><br>
+	</p>
 	<h4><strong>The MIC problem</strong></h4>
+	<p>
+		Originally I wanted to have a microphone inside the box to control the lights, but it was much complicated than what I thought. So during my research, I learned a lot about I2S protocol and how to use it, and it would actually work if I would use an API. Because teachable machine uses ml5 library, you can't connect an external microphone; this library doesn't support it. Anyway, this is how the microphone is connected:<br><br>
+		<img src="mic.png" alt="4 pic" style="width: 45%"><br><br>
+	</p>
 	<h4><strong>What comes next?</strong></h4>
+	<p>
+		During this time, I learned a lot about audio input and microphones, and I discovered it is a complicated world. I will continue working with this project because it needs more time than what I expected but it is really interesting. I would probably switch to an API because I found out it is the way to get the best results. Another reason to keep working in this project is because is really open, and when I manage to get the voice commands working as I wanted, I could add whatever I want, for example, a thermostat.<br><br>
+
+		Finally, with this project, I found my self researching a lot, and I would link most of my sources in my process website. The last thing I want to add is that yes I love mechanics and electronics and I really missed working with gears and figuring out force problems, but I also discover how much I can do writing lines of codes and organized them in the right way.
+	</p>
 </div>
 </body>
 </html>
